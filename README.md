@@ -71,3 +71,18 @@ EJEMPLO PRÁCTICO:
   Comparte esta nota con su colega Pedro. Cuando llegue el viernes, ambos recibirán una notificación recordándoles revisar la idea.
 
 Con SyncList, los usuarios tendrán una herramienta completa para gestionar sus tareas diarias, ya sea para organizar sus compras, tomar notas rápidas o configurar recordatorios, con la capacidad adicional de compartir y colaborar en tiempo real con otras personas.
+
+PANTALLA PRINCIPAL
+![imagen](https://github.com/user-attachments/assets/c7ba886d-8eba-4c3f-8fd2-1866235ad9d4)
+
+AGREGAR NOTA
+![imagen](https://github.com/user-attachments/assets/668b3ff9-3600-4e67-9a20-f5f9899d9679)
+
+LISTAS COMPARTIDAS
+![imagen](https://github.com/user-attachments/assets/3f45c9d3-0ce4-4c64-b895-b065e193fc71)
+
+VISTA DE LA NOTA
+![imagen](https://github.com/user-attachments/assets/ec61ac0d-a116-4d63-bffd-94e21775ec85)
+
+
+
