@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">SyncList</string>
+    <string name="addNote">Add note</string>
+    <string name="viewSyncNote">View shared notes</string>
+    <string name="deleteNote">Delete note</string>
+    <string name="shareNote">Share note</string>
+    <string name="btnShare">Share</string>
+    <string name="descNote">describe what you think</string>
+    <string name="nameNote">Note name</string>
+    <string name="addRecordNote">Add a reminder</string>
+    <string name="setTime">Select time</string>
+    <string name="deleteTime">Delete time</string>
+    <string name="myNote">My notes</string>
+    <string name="msgWinAdd">Welcome to add page</string>
+    <string name="msgNoteNotFound">The note doesn\'t exist</string>
+    <string name="title">Title</string>
+    <string name="shareWith">Share With...</string>
+    <string name="iconSelect">Select a Icon</string>
+    <string name="btnSave">Save</string>
+    <string name="btnCancel">Cancel</string>
+    <string name="Menu_Save">Save</string>
+    <string name="Menu_Delete">Delete</string>
+    <string name="Menu_Cancel">Cancel</string>
+
+    <string name="msgUpdNote">Updated Note</string>
+    <string name="msgSaveNote">Saved Note</string>
+    <string name="MsgMissingData">Missing data to save</string>
+
+    <string name="msgdelNote">Successfully removed</string>
+    <string name="msgInvalidId">Invalid Id</string>
+    <string name="msgIsNotInEditionMode">It is not in edit mode</string>
+
+</resources>
