@@ -5,6 +5,9 @@
         android:id="@+id/my_Note"
         android:title="@string/myNote" />
     <item
+        android:id="@+id/my_Note_Custom"
+        android:title="@string/myNoteCustom" />
+    <item
         android:id="@+id/viewSyncNotes"
         android:title="@string/viewSyncNote" />
 </menu>

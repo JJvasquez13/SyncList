@@ -44,12 +44,12 @@ class NotesModel {
         dbManager.update(notes)
     }
 
-    // Método para obtener notas compartidas
+    // Metodo para obtener notas compartidas
     fun getBySyncNotes(share: Boolean): List<Notes>? {
         return dbManager.getBySyncNotes(share)
     }
 
-    // Método para obtener mis notas no compartidas
+    // Metodo para obtener mis notas no compartidas
     fun getByMyNotes(share: Boolean): List<Notes>? {
         return dbManager.getByMyNotes(share)
     }

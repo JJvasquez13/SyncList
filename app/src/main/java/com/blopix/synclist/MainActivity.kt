@@ -94,6 +94,11 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
 
+            R.id.my_Note_Custom -> {
+                util.openActivity(this, CustomNotesActivity::class.java)
+                return true
+            }
+
             R.id.viewSyncNotes -> {
                 util.openActivity(this, SyncListActivity::class.java)
                 return true

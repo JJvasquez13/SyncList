@@ -29,5 +29,11 @@
     <string name="msgdelNote">Successfully removed</string>
     <string name="msgInvalidId">Invalid Id</string>
     <string name="msgIsNotInEditionMode">It is not in edit mode</string>
+    <string name="addPhoto">Add Photo</string>
+    <string name="selectOption">Do you want to open the camera?</string>
+    <string name="openCamera">Open Camera</string>
+    <string name="photoSaved">Photo saved successfully</string>
+    <string name="photoNotSaved">The photo cannot be saved correctly</string>
+    <string name="myNoteCustom">View Custom Notes</string>
 
 </resources>

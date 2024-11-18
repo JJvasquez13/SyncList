@@ -3,26 +3,32 @@ package com.blopix.synclist
 import Entities.Notes
 import Model.NotesModel
 import Util.util
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.os.Environment
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddNoteActivity : AppCompatActivity() {
     private lateinit var txtId: EditText
     private lateinit var txtDescription: EditText
     private lateinit var btnSave: Button
     private lateinit var btnCancel: Button
+    private lateinit var btnAddPhoto: Button
     private lateinit var notesModel: NotesModel
 
     private var isEditionMode: Boolean = false
+    private var photoPath: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,38 +45,64 @@ class AddNoteActivity : AppCompatActivity() {
         txtDescription = findViewById(R.id.multTxtDescription)
         btnSave = findViewById(R.id.btnSaveAddNote)
         btnCancel = findViewById(R.id.btnCancelAddNote)
+        btnAddPhoto = findViewById(R.id.btnAddPhoto)
 
         val noteInfo = intent.getStringExtra("EXTRA_MESSAGE_NOTE_ID")
         if (noteInfo != null && noteInfo != "") loadNote(noteInfo.toString())
 
-        btnSave.setOnClickListener {
-            saveNote()
-        }
-
+        btnSave.setOnClickListener { saveNote() }
         btnCancel.setOnClickListener {
             cleanForm()
             finish()
         }
+        btnAddPhoto.setOnClickListener { showPhotoDialog() }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.crud_menu, menu)
-
-        if (isEditionMode) {
-            menu?.findItem(R.id.menu_delete)?.isVisible = true
-            menu?.findItem(R.id.menu_delete)?.isEnabled = true
-        }
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.menu_delete -> {
-                deleteNote()
-                return true
+    private fun showPhotoDialog() {
+        val options = arrayOf(getString(R.string.openCamera), getString(R.string.btnCancel))
+        val builder = android.app.AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.selectOption))
+        builder.setItems(options) { dialog, which ->
+            when (which) {
+                0 -> openCamera()
+                1 -> dialog.dismiss()
             }
+        }
+        builder.show()
+    }
 
-            else -> super.onOptionsItemSelected(item)
+    private fun openCamera() {
+        val intent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+        if (intent.resolveActivity(packageManager) != null) {
+            val photoFile: File? = createImageFile()
+            if (photoFile != null) {
+                val photoURI: Uri = FileProvider.getUriForFile(
+                    this,
+                    "com.blopix.synclist.fileprovider",
+                    photoFile
+                )
+                intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, photoURI)
+                startActivityForResult(intent, CAMERA_REQUEST_CODE)
+            }
+        }
+    }
+
+    private fun createImageFile(): File? {
+        val timeStamp: String =
+            SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile("IMG_${timeStamp}_", ".jpg", storageDir).apply {
+            photoPath = absolutePath
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK) {
+            Toast.makeText(this, getString(R.string.photoSaved), Toast.LENGTH_SHORT).show()
+        } else {
+            photoPath = ""
+            Toast.makeText(this, getString(R.string.photoNotSaved), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -79,6 +111,7 @@ class AddNoteActivity : AppCompatActivity() {
             val note = Notes()
             note.id = txtId.text.toString()
             note.description = txtDescription.text.toString()
+            note.icon = photoPath
 
             if (dataValidation(note)) {
                 if (isEditionMode) {
@@ -99,25 +132,10 @@ class AddNoteActivity : AppCompatActivity() {
         }
     }
 
-    private fun deleteNote() {
-        if (isEditionMode) {
-            val noteId = txtId.text.toString()
-            if (noteId.isNotEmpty()) {
-                notesModel.remNote(noteId)
-                cleanForm()
-                util.openActivity(this, MainActivity::class.java)
-                Toast.makeText(this, R.string.msgdelNote, Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, R.string.msgInvalidId, Toast.LENGTH_LONG).show()
-            }
-        } else {
-            Toast.makeText(this, R.string.msgIsNotInEditionMode, Toast.LENGTH_LONG).show()
-        }
-    }
-
     private fun cleanForm() {
         txtId.setText("")
         txtDescription.setText("")
+        photoPath = ""
     }
 
     private fun loadNote(noteInfo: String) {
@@ -125,6 +143,7 @@ class AddNoteActivity : AppCompatActivity() {
             val note = notesModel.getNote(noteInfo)
             txtId.setText(note.id)
             txtDescription.setText(note.description)
+            photoPath = note.icon
             isEditionMode = true
             txtId.isEnabled = false
 
@@ -136,5 +155,9 @@ class AddNoteActivity : AppCompatActivity() {
 
     private fun dataValidation(note: Notes): Boolean {
         return note.id.isNotEmpty() && note.description.isNotEmpty()
+    }
+
+    companion object {
+        private const val CAMERA_REQUEST_CODE = 1
     }
 }
