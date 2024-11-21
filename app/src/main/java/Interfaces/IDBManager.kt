@@ -1,8 +1,8 @@
-package Interfaces;
+package Interfaces
 
-import Entities.Notes
+import Notes
 
-public interface IDBManager {
+interface IDBManager {
     fun add(note: Notes)
     fun update(note: Notes)
     fun remove(id: String)

@@ -1,50 +1,46 @@
 package Data
 
-import Entities.Notes
+
+import Notes
 import Interfaces.IDBManager
 
+class MemoryManager {
+    /*private val notesList = mutableListOf<Notes>()
 
-object MemoryManager : IDBManager {
-    private var notesList = mutableListOf<Notes>()
     override fun add(note: Notes) {
+        if (notesList.any { it.id == note.id }) {
+            throw IllegalArgumentException("A note with ID ${note.id} already exists.")
+        }
         notesList.add(note)
     }
 
     override fun update(note: Notes) {
-        remove(note.id)
-        notesList.add(note)
+        val index = notesList.indexOfFirst { it.id == note.id }
+        if (index != -1) {
+            notesList[index] = note
+        } else {
+            throw IllegalArgumentException("Cannot update: Note with ID ${note.id} does not exist.")
+        }
     }
 
     override fun remove(id: String) {
-        notesList.removeIf { it.id.trim() == id.trim() }
+        if (!notesList.removeIf { it.id == id }) {
+            throw IllegalArgumentException("Cannot remove: Note with ID $id not found.")
+        }
     }
 
     override fun getAll(): List<Notes> = notesList.toList()
 
     override fun getById(id: String): Notes? {
-        try {
-            var result = notesList.filter { (it.id) == id }
-            return if (!result.any()) null else result[0]
-        } catch (e: Exception) {
-            throw e
-        }
+        return notesList.find { it.id == id }
     }
 
-    override fun getBySyncNotes(share: Boolean): List<Notes>? {
-        return if (share) {
-            notesList.filter { it.share }
-        } else {
-            null
-        }
+    override fun getBySyncNotes(share: Boolean): List<Notes> {
+        return notesList.filter { it.share == share }
     }
 
-    override fun getByMyNotes(share: Boolean): List<Notes>? {
-        return if (!share) {
-            notesList.filter { !it.share }
-        } else {
-            null
-        }
-    }
-
-
+    override fun getByMyNotes(share: Boolean): List<Notes> {
+        // Devolviendo las notas que no son compartidas.
+        return notesList.filter { !it.share }
+    }*/
 }
