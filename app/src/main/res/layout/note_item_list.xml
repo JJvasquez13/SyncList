@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:background="@drawable/foto_item_background"
+    android:layout_margin="8dp"
+    android:elevation="4dp">
+
+    <!-- Imagen de la nota -->
+    <ImageView
+        android:id="@+id/imgitem_foto"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/iconSelect"
+        android:scaleType="centerCrop"
+        android:src="@drawable/foto_item_background" />
+
+    <!-- Contenido de texto -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!-- Nombre de la nota -->
+        <TextView
+            android:id="@+id/txt_noteName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Título de la Nota"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:ellipsize="end"
+            android:maxLines="1" />
+
+        <!-- Descripción completa -->
+        <TextView
+            android:id="@+id/txt_fullDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripción breve de la nota."
+            android:textSize="14sp"
+            android:textColor="@color/gray"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:layout_marginTop="4dp" />
+    </LinearLayout>
+</LinearLayout>

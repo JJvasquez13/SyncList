@@ -7,6 +7,24 @@
     android:layout_height="match_parent"
     tools:context=".AddNoteActivity">
 
+    <!-- Campo para ingresar el ID -->
+    <EditText
+        android:id="@+id/txtId"
+        android:layout_width="282dp"
+        android:layout_height="49dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/id"
+        android:textAlignment="center"
+        android:background="@drawable/edittext_background"
+        app:layout_constraintBottom_toTopOf="@id/txtTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.096" />
+
+    <!-- Campo para ingresar el título (nombre de la nota) -->
     <EditText
         android:id="@+id/txtTitle"
         android:layout_width="282dp"
@@ -16,65 +34,30 @@
         android:hint="@string/title"
         android:textAlignment="center"
         android:background="@drawable/edittext_background"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/multTxtDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtId"
         app:layout_constraintVertical_bias="0.096" />
 
-    <TextView
-        android:id="@+id/txtShareWith"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/shareWith"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.79"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.199" />
 
-    <TextView
-        android:id="@+id/txtIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/iconSelect"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.207"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.199" />
-
+    <!-- Botón para agregar una foto -->
     <Button
-        android:id="@+id/btnShare"
-        android:layout_width="99dp"
-        android:layout_height="47dp"
-        android:text="@string/btnShare"
-        android:textSize="18sp"
-        app:cornerRadius="55dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/btnAddPhoto"
+        android:layout_width="120dp"
+        android:layout_height="44dp"
+        android:text="@string/addPhoto"
+        android:textSize="12sp"
+        app:cornerRadius="40dp"
+        app:layout_constraintBottom_toTopOf="@id/multTxtDescription"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.788"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.241" />
+        app:layout_constraintTop_toBottomOf="@id/txtTitle"
+        app:layout_constraintVertical_bias="0.244" />
 
-    <Spinner
-        android:id="@+id/spinIcon"
-        android:layout_width="94dp"
-        android:layout_height="24dp"
-        android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.201"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.248" />
-
+    <!-- Campo de descripción de la nota -->
     <EditText
         android:id="@+id/multTxtDescription"
         android:layout_width="281dp"
@@ -85,13 +68,14 @@
         android:hint="@string/descNote"
         android:textSize="22sp"
         android:background="@drawable/edittext_background"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnSaveAddNote"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnAddPhoto"
         app:layout_constraintVertical_bias="0.721" />
 
+    <!-- Botón de cancelar -->
     <Button
         android:id="@+id/btnCancelAddNote"
         android:layout_width="120dp"
@@ -106,6 +90,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.95" />
 
+    <!-- Botón de guardar -->
     <Button
         android:id="@+id/btnSaveAddNote"
         android:layout_width="120dp"

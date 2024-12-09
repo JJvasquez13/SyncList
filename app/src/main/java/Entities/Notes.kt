@@ -1,63 +1,31 @@
-package Entities
-
 class Notes {
+
     private var _id: String = ""
+    private var _noteName: String = ""
     private var _description: String = ""
-    private var _recordatory: Int = 0
-    private var _shareWith: String = ""
-    private var _icon: String = ""
-    private var _share: Boolean = false
+    private var _image: ByteArray? = null
 
-    constructor()
-
-    constructor(
-        id: String,
-        description: String,
-        recordatory: Int,
-        shareWith: String,
-        icon: String,
-        share: Boolean
-    ) {
+    constructor(id: String, noteName: String, description: String, image: ByteArray?) {
         this._id = id
+        this._noteName = noteName
         this._description = description
-        this._recordatory = recordatory
-        this._shareWith = shareWith
-        this._icon = icon
-        this._share = share
+        this._image = image
     }
 
+    // Getters y setters
     var id: String
         get() = this._id
-        set(value) {
-            this._id = value
-        }
+        set(value) { this._id = value }
+
+    var noteName: String
+        get() = this._noteName
+        set(value) { this._noteName = value }
 
     var description: String
         get() = this._description
-        set(value) {
-            this._description = value
-        }
+        set(value) { this._description = value }
 
-    var recordatory: Int
-        get() = this._recordatory
-        set(value) {
-            this._recordatory = value
-        }
-
-    var shareWith: String
-        get() = this._shareWith
-        set(value) {
-            this._shareWith = value
-        }
-    var icon: String
-        get() = this._icon
-        set(value) {
-            this._icon = value
-        }
-
-    var share: Boolean
-        get() = this._share
-        set(value) {
-            this._share = value
-        }
+    var image: ByteArray?
+        get() = this._image
+        set(value) { this._image = value }
 }
